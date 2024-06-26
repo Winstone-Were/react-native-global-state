@@ -1,0 +1,67 @@
+# REACTNATIVE STATE MANAGEMENT
+
+## DESCRIPTION
+
+Managing State is essential in all application. There are numerous ways of doing this but I find most too complex.
+So I developed my own simple implementation for managing state in a react native application
+
+## How it works
+
+Theres a global Array called State Array
+I use 3 Functions to write,read and delete from the state function
+
+```
+let STATE_ARRAY = [];
+
+export const pushToStateArray = (value) =>{
+    STATE_ARRAY.push(value);
+}
+
+export const getStateArray = () =>{
+    return STATE_ARRAY;
+}
+
+export const emptyStateArray = () => {
+    STATE_ARRAY = [];
+}
+```
+
+## Implementation in React Native 
+
+I import the functions which enable me to access the state 
+
+first screen
+
+```
+import { getStateArray, pushToStateArray } from '../Services/StateService';
+
+export default function FirstScreen({ navigation }) {
+    const [value, setValue] = useState();
+    const ReadValue = () => {
+        console.log(getStateArray());
+        setValue(getStateArray());
+    }
+    const WriteValue = (value) => {
+        pushToStateArray(value);
+    }
+}
+```
+
+second screen
+
+```
+import { getStateArray, pushToStateArray, emptyStateArray } from '../Services/StateService';
+
+export default function SecondScreen({ navigation }) {
+    const [value, setValue] = useState();
+    const ReadValue = () => {
+        console.log(getStateArray());
+        setValue(getStateArray());
+    }
+    const WriteValue = (value) => {
+        pushToStateArray(value);
+    }
+
+}
+
+```
